@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.KrediHesaplama"
+             xmlns:local="clr-namespace:MauiApp1"
+             Title="Kredi Hesaplama">
+
+    <ContentPage.Resources>
+        <x:Array x:Key="krediTurleri" Type="{x:Type x:String}">
+            <x:String>İhtiyaç Kredisi</x:String>
+            <x:String>Konut Kredisi</x:String>
+            <x:String>Taşıt Kredisi</x:String>
+            <x:String>Ticari Kredi</x:String>
+        </x:Array>
+        <ResourceDictionary>
+            <Color x:Key="maviRenk">#0000FF</Color>
+            <Color x:Key="beyazRenk">#FFFFFF</Color>
+            
+            <Color x:Key="siyahRenk">#000000</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <StackLayout Padding="20" BackgroundColor="{StaticResource siyahRenk}">
+
+        <Picker Title="Kredi Türü Seçiniz" x:Name="pickerKrediTuru" ItemsSource="{StaticResource krediTurleri}" />
+
+
+        <Entry Placeholder="Kredi Tutarı" x:Name="txtKrediTutari" TextColor="{StaticResource beyazRenk}" />
+        <Entry Placeholder="Yıllık Faiz Oranı (%)" x:Name="txtFaizOrani" TextColor="{StaticResource beyazRenk}" />
+        <Entry Placeholder="Vade (Ay)" x:Name="txtVade" TextColor="{StaticResource beyazRenk}" />
+        <Slider x:Name="sliderVade" Maximum="60" Minimum="1" Value="{Binding Source={x:Reference txtVade}, Path=Text, Mode=TwoWay}" />
+
+
+        <Button Text="Hesapla" Clicked="Hesapla_Clicked" BackgroundColor="{StaticResource maviRenk}" TextColor="{StaticResource beyazRenk}" />
+        <Label Text="Aylık Taksit: " x:Name="lblAylıkTaksit" HorizontalOptions="Center" TextColor="{StaticResource beyazRenk}" />
+        <Label Text="Toplam Ödeme: " x:Name="lblToplamOdeme" HorizontalOptions="Center" TextColor="{StaticResource beyazRenk}" />
+        <Label Text="Toplam Faiz: " x:Name="lblToplamFaiz" HorizontalOptions="Center" TextColor="{StaticResource beyazRenk}" />
+
+    </StackLayout>
+</ContentPage>
